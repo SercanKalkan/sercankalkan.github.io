@@ -1,33 +1,43 @@
-// Hedef tarih başlangıçta sabit bir tarih olarak tanımlanıyor
-let targetDate = new Date("2025-12-02T19:09:00");
-
-function countdown() {
-    // Mevcut tarih
+function updateTimer() {
+    // Hedef tarih ve şu anki tarih
+    const past = new Date("2019-12-02T19:09:00");
     const now = new Date();
-    const diff = targetDate - now;
 
-    // Eğer süre dolmuşsa
-    if (diff <= 0) {
-        // Yılı bir artır
-        targetDate.setFullYear(targetDate.getFullYear() + 1);
+    // Yıllar, aylar, günler vb. için ayrı ayrı fark hesaplama
+    let years = now.getFullYear() - past.getFullYear();
+    let months = now.getMonth() - past.getMonth();
+    let days = now.getDate() - past.getDate();
+    let hours = now.getHours() - past.getHours();
+    let minutes = now.getMinutes() - past.getMinutes();
+    let seconds = now.getSeconds() - past.getSeconds();
 
-        // Mesaj göster ve bir sonraki geri sayımı başlat
-        document.getElementById("countdown").innerHTML =
-            "<div><span>Anniversary Time! Countdown Restarted for Next Year!</span></div>";
-        return;
+    // Eğer negatif bir fark varsa bir sonraki birime borç al (ör: -1 ay)
+    if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+    }
+    if (minutes < 0) {
+        minutes += 60;
+        hours--;
+    }
+    if (hours < 0) {
+        hours += 24;
+        days--;
+    }
+    if (days < 0) {
+        // Geçerli ayın kaç gün çektiğini hesaplayarak gün düzeltmesi yap
+        const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += previousMonth.getDate();
+        months--;
+    }
+    if (months < 0) {
+        months += 12;
+        years--;
     }
 
-    // Zaman hesaplamaları
-    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) % 12;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    // Çıkışı yazdır
-    document.getElementById("countdown").innerHTML =
-        '<div><span>HOW LONG IS LEFT TO OUR ANNIVERSARY?</span></div><br>' +
+    // HTML'e yazdır
+    document.getElementById("timer").innerHTML =
+        '<div><span>Since: 2019-12-02</span></div><br>' +
         '<div>' + years + '<span> Years</span></div>' +
         '<div>' + months + '<span> Months</span></div>' +
         '<div>' + days + '<span> Days</span></div>' +
@@ -36,5 +46,5 @@ function countdown() {
         '<div>' + seconds + '<span> Seconds</span></div>';
 }
 
-// 1 saniye aralıklarla fonksiyonu çalıştır
-setInterval(countdown, 1000);
+// 1 saniyelik aralıklarla zamanlayıcıyı güncelle
+setInterval(updateTimer, 1000);
