@@ -1,6 +1,6 @@
 function updateTimer() {
     // Hedef tarih ve şu anki tarih
-    const past = new Date("2019-12-02T19:09:00");
+    const past = new Date("2025-12-02T19:09:00");
     const now = new Date();
 
     // Yıllar, aylar, günler vb. için ayrı ayrı fark hesaplama
