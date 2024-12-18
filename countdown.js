@@ -36,7 +36,7 @@ function updateTimer() {
     }
 
     // HTML'e yazdır
-    document.getElementById("timer").innerHTML =
+    document.getElementById("countdown").innerHTML =
         '<div><span>Since: 2019-12-02</span></div><br>' +
         '<div>' + years + '<span> Years</span></div>' +
         '<div>' + months + '<span> Months</span></div>' +
