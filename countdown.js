@@ -1,5 +1,5 @@
 function countdown() {
-    nowyear  = Date.parse("2024-12-02 19:09:00");
+    nowyear  = Date.parse("2025-12-02 19:09:00");
     end  = new Date();
     diff2 =nowyear - end;
     
