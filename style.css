@@ -4,15 +4,16 @@ body {
     text-align: center;
     margin: 0;
     padding: 50px 20px;
-    background: radial-gradient(circle, #1b2735 0%, #090a0f 100%);
-    font-family: "Poppins", Arial, sans-serif;
-    color: #fff;
+    background: linear-gradient(180deg, #ff9a76, #fbd1a2, #ffd8b1);
+    font-family: "Roboto", Arial, sans-serif;
+    color: #333;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; Bu kuralı kaldırdık */
+    overflow-y: auto; /* Kaydırmayı aktif hale getirdik */
 }
 
 /* Merkezdeki Ana Başlık */
