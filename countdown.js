@@ -1,29 +1,40 @@
+// Hedef tarih başlangıçta sabit bir tarih olarak tanımlanıyor
+let targetDate = new Date("2025-12-02T19:09:00");
+
 function countdown() {
-    nowyear  = Date.parse("2025-12-02 19:09:00");
-    end  = new Date();
-    diff2 =nowyear - end;
-    
-    years  = Math.floor( diff2 / (1000*60*60*24*30*12) );
-    months = Math.floor( diff2/ (1000*60*60*24*30) );
-    days   = Math.floor( diff2 / (1000*60*60*24) );
-    hours  = Math.floor( diff2 / (1000*60*60) );
-    mins   = Math.floor( diff2 / (1000*60) );
-    secs   = Math.floor( diff2 / 1000 );
-    
-    ye = years;
-    Mo = months - years  * 12;
-    da = days   - months * 30;
-    mi = mins   - hours  * 60;
-    se = secs   - mins   * 60;
-    ho = hours  - days   * 24;
-    
+    // Mevcut tarih
+    const now = new Date();
+    const diff = targetDate - now;
+
+    // Eğer süre dolmuşsa
+    if (diff <= 0) {
+        // Yılı bir artır
+        targetDate.setFullYear(targetDate.getFullYear() + 1);
+
+        // Mesaj göster ve bir sonraki geri sayımı başlat
+        document.getElementById("countdown").innerHTML =
+            "<div><span>Anniversary Time! Countdown Restarted for Next Year!</span></div>";
+        return;
+    }
+
+    // Zaman hesaplamaları
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) % 12;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    // Çıkışı yazdır
     document.getElementById("countdown").innerHTML =
-    '<div><span>HOW LONG IS LEFT TO OUR ANNIVERSARY?</span></div><br>'+
-    '<div>' + ye + '<span>Years</span></div>' +
-    '<div>' + Mo + '<span>Months</span></div>' +
-    '<div>' + da + '<span>Days</span></div>' +
-    '<div>' + ho + '<span>Hours</span></div>' +
-    '<div>' + mi + '<span>Minutes</span></div>' +
-    '<div>' + se + '<span>Seconds</span></div>' ;
+        '<div><span>HOW LONG IS LEFT TO OUR ANNIVERSARY?</span></div><br>' +
+        '<div>' + years + '<span> Years</span></div>' +
+        '<div>' + months + '<span> Months</span></div>' +
+        '<div>' + days + '<span> Days</span></div>' +
+        '<div>' + hours + '<span> Hours</span></div>' +
+        '<div>' + minutes + '<span> Minutes</span></div>' +
+        '<div>' + seconds + '<span> Seconds</span></div>';
 }
-setInterval('countdown()', 1000 );
+
+// 1 saniye aralıklarla fonksiyonu çalıştır
+setInterval(countdown, 1000);
