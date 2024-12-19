@@ -4,9 +4,9 @@ body {
     text-align: center;
     margin: 0;
     padding: 50px 20px;
-    background: linear-gradient(180deg, #ff9a76, #fbd1a2, #ffd8b1);
+    background: radial-gradient(circle, #1b2735 0%, #090a0f 100%);
     font-family: "Roboto", Arial, sans-serif;
-    color: #333;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
