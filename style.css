@@ -23,6 +23,7 @@ body {
     font-weight: 700;
     color: #f7e0e0;
     text-shadow: 0 0 15px #ff5555, 0 0 30px #ff9999;
+    margin-top: auto;
     margin-bottom: 20px;
 }
 
